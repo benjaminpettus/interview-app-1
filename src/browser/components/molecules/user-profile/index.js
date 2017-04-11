@@ -5,13 +5,13 @@ import Layout from '../../pages/layout/index'
 
 
 export default class UserProfile extends Component {
-  render(){
-    console.log('what is ::', this)
+  render(props){
+    const user = this.props.user
     return (
       <div>
         <div style={{width:'200', height:'250', backgroundColor:'gray'}}>
         </div>
-        <h3>{profileName}</h3>
+        <h3>{user.profileName.value}</h3>
         <p>Joined on: {"04/09/2017"}</p>
         <p>Experience: {"Ultra Advanced"}</p>
         <p>Interviews Completed: {25}</p>

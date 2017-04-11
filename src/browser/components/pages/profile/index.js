@@ -9,7 +9,7 @@ export default class Profile extends Component {
   render() {
     return (
       <Layout profile={this.props.profile} stats={this.props.stats}>
-        <UserProfile />
+        <UserProfile user={this.props.profile}/>
       </Layout>
     )
   }
