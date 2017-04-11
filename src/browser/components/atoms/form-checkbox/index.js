@@ -5,16 +5,23 @@ export default class FormCheckbox extends Component {
     super()
   }
 
+
   render() {
-    const checklist = props.choices.map( (choice, index) => {
-      <div key = index>
-        <p>{choice}</p>
-        <input className="uk-input" id={choice} type="checkbox"/>
-      </div>
+    const checklist = this.props.choices.map( (choice, index) => {
+      const choiceId = 'checkbox-'+choice.split(' ').join('-')
+      const choiceLabel = ' '+choice
+      return (
+        <div key = {index} className="uk-form-controls uk-form-controls-text">
+          <label>
+            <input className="uk-checkbox" id={choiceId} type="checkbox" name={choiceId}/>
+            {choiceLabel}
+          </label>
+        </div>
+      )
     })
 
     return (
-      <div className="uk-form-controls">
+      <div>
         {checklist}
       </div>
     )

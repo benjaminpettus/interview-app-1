@@ -3,6 +3,7 @@ import flex from 'react-uikit-flex'
 import ProfileBox from '../../atoms/profile-box/index'
 import StatBox from '../../atoms/stat-box/index'
 import AddInput from '../prompt-input/index'
+import FormCheckbox from '../../atoms/form-checkbox'
 
 
 require('../../../../../public/stylesheets/uikit.min.css')
@@ -13,6 +14,8 @@ export default class Header extends Component {
   }
 
   render() {
+    const topics = ['Core-JavaScript', 'Functional-Programming']
+
     return (
       <div>
         <nav className="uk-navbar">
@@ -47,12 +50,7 @@ export default class Header extends Component {
                                 </div>
                                 <div className="uk-margin">
                                     <label className="uk-form-label" htmlFor="form-horizontal-select">Topic</label>
-                                    <div className="uk-form-controls">
-                                        <select className="uk-select form-horizontal-text">
-                                            <option>core-javascript</option>
-                                            <option>functional-programming</option>
-                                        </select>
-                                    </div>
+                                    <FormCheckbox choices={topics} />
                                 </div>
                                 <div className="uk-margin">
                                     <div className="uk-form-label">Difficulty Levels</div>
