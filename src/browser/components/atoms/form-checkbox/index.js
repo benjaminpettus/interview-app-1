@@ -7,22 +7,29 @@ export default class FormCheckbox extends Component {
 
 
   render() {
-    const checklist = this.props.choices.map( (choice, index) => {
-      const choiceId = 'checkbox-'+choice.split(' ').join('-')
-      const choiceLabel = ' '+choice
+    const checklist = this.props.options.map( (option, index) => {
+      const optionId = this.props.prompt+'-'+option.split(' ').join('-')
+      const optionLabel = ' '+option
+
+      const renameMe = (event) => {
+        this.props.onChange({property: optionId, isCheckbox: true}, event)
+      }
+
       return (
         <div key = {index} className="uk-form-controls uk-form-controls-text">
           <label>
-            <input className="uk-checkbox" id={choiceId} type="checkbox" name={choiceId}/>
-            {choiceLabel}
+            <input className="uk-checkbox" id={optionId} type="checkbox" name={optionId} onChange={renameMe}/>
+            {optionLabel}
           </label>
         </div>
       )
     })
 
+    const prompt = this.props.prompt
     return (
-      <div>
-        {checklist}
+      <div className="uk-margin">
+        <label className="uk-form-label" htmlFor="form-horizontal-select">{prompt}</label>
+          {checklist}
       </div>
     )
   }

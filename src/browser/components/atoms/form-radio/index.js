@@ -15,23 +15,25 @@ export default class FormRadio extends Component {
   }
 
   render() {
-    const checklist = this.props.choices.map( (choice, index) => {
-      const choiceId = 'radio-'+choice.split(' ').join('-')
-      const choiceLabel = ' '+choice
+    const radio = this.props.options.map( (option, index) => {
+      const optionId = this.props.prompt+'-'+option.split(' ').join('-')
+      const optionLabel = ' '+option
       const iteration = FormRadio.iterator
       return (
         <div key = {index} className="uk-form-controls uk-form-controls-text">
           <label>
-            <input className="uk-radio" id={choiceId} type="radio" name={iteration}/>
-            {choiceLabel}
+            <input className="uk-radio" id={optionId} type="radio" name={iteration} value={option} onChange={this.props.onChange.bind(this.props.self, option)}/>
+            {optionLabel}
           </label>
         </div>
       )
     })
 
+    const prompt = this.props.prompt
     return (
-      <div>
-        {checklist}
+      <div className="uk-margin">
+        <div className="uk-form-label">{prompt}</div>
+        {radio}
       </div>
     )
   }

@@ -5,6 +5,8 @@ import StatBox from '../../atoms/stat-box/index'
 import AddInput from '../prompt-input/index'
 import FormCheckbox from '../../atoms/form-checkbox'
 import FormRadio from '../../atoms/form-radio/index'
+import FormInput from '../../atoms/form-input/index'
+import Form from '../../molecules/form/index'
 
 
 require('../../../../../public/stylesheets/uikit.min.css')
@@ -16,8 +18,13 @@ export default class Header extends Component {
 
 
   render() {
-    const topics = ['Core-JavaScript', 'Functional-Programming']
-    const difficulty = ['Beginner', 'Intermediate', 'Advanced', 'Jedi']
+
+    const inputModules = [
+      {"type": "Input", "placeholder": "What is the meaning of life, the universe, and everything?", "prompt": "What Is Your Question?"},
+      {"type": "Select", "id": "select1", "options": ["1","262","42","9"], "prompt": "What Is The Answer?", "isOptionRequired": false},
+      {"type": "Checkbox", "options": ["Core-JavaScript", "Functional-Programming"], "prompt": "Topic"},
+      {"type": "Radio", "options": ["Beginner", "Intermediate", "Advanced", "Jedi"], "prompt": "Difficulty Levels"}
+    ]
 
     return (
       <div>
@@ -37,30 +44,8 @@ export default class Header extends Component {
                           <div className="uk-modal-dialog uk-modal-body">
                               <h2 className="uk-modal-title uk-text-center">New Question Form</h2>
                               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                              <form className="uk-form-horizontal uk-margin-large">
-                                <div className="uk-margin">
-                                    <label className="uk-form-label" htmlFor="form-horizontal-text">What Is Your Question?</label>
-                                    <div className="uk-form-controls">
-                                        <input className="uk-input form-horizontal-text" type="text" placeholder="What is the meaning of life, the universe, and everything?" />
-                                    </div>
-                                </div>
-                                <div className="uk-margin">
-                                    <label className="uk-form-label" htmlFor="form-horizontal-text">What Is The Answer?</label>
-                                    <div className="uk-form-controls">
-
-                                        <input className="uk-input form-horizontal-text" type="text" placeholder="42" />
-                                    </div>
-                                </div>
-                                <div className="uk-margin">
-                                    <label className="uk-form-label" htmlFor="form-horizontal-select">Topic</label>
-                                    <FormCheckbox choices={topics} />
-                                </div>
-                                <div className="uk-margin">
-                                    <div className="uk-form-label">Difficulty Levels</div>
-                                    <FormRadio choices={difficulty}/>
-                                </div>
-                                <AddInput />
-                            </form>
+                              <Form inputModules={inputModules} />
+                              <AddInput />
                             <p className="uk-text-right">
                                 <button className="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
                                 <button className="uk-button uk-button-primary" type="button">Save</button>
