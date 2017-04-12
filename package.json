@@ -1,4 +1,4 @@
- {
+{
   "name": "interview-app",
   "version": "1.0.0",
   "description": "",
@@ -10,7 +10,7 @@
     "migrate:rollback": "babel-node ./node_modules/.bin/knex --knexfile ./src/database/knexfile.js migrate:rollback",
     "prod": "./node_modules/.bin/babel-node app.js",
     "heroku-postbuild": "webpack -p --progress --colors",
-    "test": "NODE_ENV=test ./node_modules/.bin/nyc ./node_modules/.bin/mocha --require babel-register ./test/*"
+    "test": "NODE_ENV=test ./node_modules/.bin/nyc ./node_modules/.bin/mocha --require babel-register ./test/*/* --require ignore-styles"
   },
   "author": "",
   "license": "MIT",
@@ -48,6 +48,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "chai-enzyme": "^0.6.1",
     "dotenv": "^4.0.0",
     "enzyme": "^2.8.0",
     "ignore-styles": "^5.0.1",
