@@ -3,6 +3,7 @@ import flex from 'react-uikit-flex'
 import ProfileBox from '../../atoms/profile-box/index'
 import StatBox from '../../atoms/stat-box/index'
 import AddInput from '../prompt-input/index'
+import FormRadio from '../../atoms/form-radio/index'
 
 
 require('../../../../../public/stylesheets/uikit.min.css')
@@ -12,7 +13,10 @@ export default class Header extends Component {
     super(props)
   }
 
+
   render() {
+    const difficulty = ['Beginner', 'Intermediate', 'Advanced', 'Jedi']
+
     return (
       <div>
         <nav className="uk-navbar">
@@ -56,12 +60,7 @@ export default class Header extends Component {
                                 </div>
                                 <div className="uk-margin">
                                     <div className="uk-form-label">Difficulty Levels</div>
-                                    <div className="uk-form-controls uk-form-controls-text">
-                                        <label><input className="uk-radio" type="radio" name="radio1" /> Beginner</label><br></br>
-                                        <label><input className="uk-radio" type="radio" name="radio1" /> Intermediate</label><br></br>
-                                        <label><input className="uk-radio" type="radio" name="radio1" /> Advanced</label><br></br>
-                                        <label><input className="uk-radio" type="radio" name="radio1" /> Jedi</label>
-                                    </div>
+                                    <FormRadio choices={difficulty}/>
                                 </div>
                                 <AddInput />
                             </form>
