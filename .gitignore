@@ -12,6 +12,7 @@ lib-cov
 
 # Coverage directory used by tools like istanbul
 coverage
+.nyc_output
 
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
@@ -30,8 +31,9 @@ node_modules
 npm-debug.log
 
 # ignore the dist folder that webpack creates for are react app.
-public/dist/
+public/dist/*
 
 .env
+
 .DS_Store
 yarn.lock

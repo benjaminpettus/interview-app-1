@@ -16,10 +16,26 @@ Practicing mock interviews helps the Candidate develop skills for answering tech
 Specifications and requirements will be assigned based on the items in backlog within the Development project (see the projects tab of the interview-app repository).
 
 ### Setup instructions
- Install all dependencies by running this in a terminal window
-```bash
-    npm install
-```
+If this is the first time you're setting up this repo:
+
+./go init
+./go install_idm
+
+You will need to create a `.env.development` file in IDM and follow steps 7 & 8 in the idm ReadMe. 
+
+Then, you will need to create a `.env.development` file in this repo and add the JWT_PUBLIC_KEY from IDM.
+
+If you've worked on this repo in the past, and you're working in the development environment:
+./go start
+
+To run your test and reset the test database:
+./go test
+
+To reset the database and run the migration:
+./go reset_db
+
+For additional help and usage instructions:
+./go help
 
 ### Start development server
 Run this in a terminal window
