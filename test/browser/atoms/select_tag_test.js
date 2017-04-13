@@ -16,7 +16,7 @@ describe('<SelectTag />', () => {
     expect(wrapper.find('div.uk-margin')).to.have.length(1)
   })
 
-  context('the outer div should contain two elements', () => {
+  context('the outer div should contain two html elements', () => {
     it('should have a label', () => {
       const wrapper = mount(<SelectTag options={[]} label={label} value={options[1]} />)
       expect(wrapper.find('div.uk-margin').childAt(0).type()).to.equal('label')
@@ -29,7 +29,7 @@ describe('<SelectTag />', () => {
     })
   })
 
-  context('inner divs child should be a selector', () => {
+  context('inner divs child should be a select', () => {
     it('is a selector', () => {
       const wrapper = mount(<SelectTag options={[]} label={label} value={options[1]} />)
       expect(wrapper.find('div.uk-form-controls').children().type()).to.equal('select')
@@ -40,5 +40,9 @@ describe('<SelectTag />', () => {
     })
   })
 
+  it('should render N+1 <option> tags', () => {
+    const wrapper = mount(<SelectTag options={options} label={label} />)
+    expect(wrapper.find('option').length).to.eql(4)
+  })
 
 })

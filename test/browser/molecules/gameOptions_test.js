@@ -12,31 +12,31 @@ global.window = document.defaultView;
 describe('<GameOptions />', () => {
   const topics = ["JavaScript", "http", "SQL"]
   const difficulty = ["beginner", "intermediate", "advanced"]
+  const gameModes = ['solo', 'pair', 'whiteboard']
 
-  it('should render a div', () => {
-    const wrapper = shallow(<GameOptions options={[]} parse ={[]} value={''}  />)
-    expect(wrapper.find('div').exists()).to.be.true
-  })
   context('it should render a form', () => {
     it('has a form element', () => {
-      const wrapper = shallow(<GameOptions options={[]} parse ={[]} value={''}  />)
+      const wrapper = shallow(<GameOptions options={[]} parse ={[]} />)
       expect(wrapper.find('div').childAt(2).type()).to.equal('form')
     })
     it('contains a fieldset as its first child', () => {
-      const wrapper = mount(<GameOptions options={[]} parse ={[]} value={''}  />)
+      const wrapper = mount(<GameOptions options={[]} parse ={[]} />)
       expect(wrapper.find('form').childAt(0).type()).to.equal('fieldset')
     })
-    context('it should render three select tags', () => {
-      it('should render three Select tags', () => {
-        const wrapper = mount(<GameOptions options={[]} parse ={[]} value={''}  />)
-        expect(wrapper.find(SelectTag).length).to.equal(3)
-      })
-    })
+
+  })
+  it('should render SelectTag in the right order with correct props', () => {
+    const wrapper = shallow(<GameOptions difficulty={difficulty} topics ={topics}
+                          gameModes={gameModes} parse={{}} />)
+    expect(wrapper.find(SelectTag).length).to.equal(3)
+    expect(wrapper.find(SelectTag).get(0).props.options).to.equal(difficulty)
+    expect(wrapper.find(SelectTag).get(1).props.options).to.equal(topics)
+    expect(wrapper.find(SelectTag).get(2).props.options).to.equal(gameModes)
+  })
   it('should render a button', () => {
-    const wrapper = mount(<GameOptions options={[]} parse ={[]} value={''}  />)
-    expect(wrapper.find('button').length).to.equal(1)
-  })
+    const wrapper = shallow(<GameOptions difficulty={difficulty} topics ={topics}
+                          gameModes={gameModes} parse={{}} />)
+    expect(wrapper.find('button.uk-button').exists()).to.be.true
 
   })
-
 })
