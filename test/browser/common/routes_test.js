@@ -16,7 +16,7 @@ import GameOptions from '../../../src/browser/components/molecules/game-options/
 
 describe('<Routes />', () => {
   it('should render correct routes', () => {
-    const wrapper = shallow( < Routes / > )
+    const wrapper = shallow( < Routes / >)
     const pathMap = wrapper.find(Route).reduce((pathMap, route) => {
       const routeProps = route.props()
       pathMap[routeProps.path] = routeProps.component

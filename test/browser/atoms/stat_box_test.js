@@ -3,10 +3,13 @@ import { expect } from 'chai'
 import { shallow, mount } from 'enzyme'
 import { jsdom } from 'jsdom'
 
+global.document = jsdom('');
+global.window = document.defaultView;
+
 import StatBox from '../../../src/browser/components/atoms/stat-box/index'
 import StatCounter from '../../../src/browser/components/atoms/stat-counter/index'
 
-describe.only('<StatBox />', () => {
+describe('<StatBox />', () => {
 
   it('should return a div', () => {
     const wrapper = shallow(<StatBox />)
@@ -20,23 +23,10 @@ describe.only('<StatBox />', () => {
       expect(wrapper.find('div.uk-flex-left')).to.have.length(1)
     })
   })
-
-  context('should render props', () => {
-    it('should render the proper username value it is passed', () => {
-      const wrapper = mount(<StatBox name="Keith" count="10"/>)
-      expect(wrapper.props().name).to.equal('Keith')
-    })
-    it('should render proper count value it is passed', () => {
-      const wrapper = mount(<StatBox name="Keith" count="10"/>)
-      expect(wrapper.props().count).to.equal("10")
-    })
-  })
-
   context('inner div contains an instance of <StatCounter />', () => {
     it('should render <StatCounter/>', () => {
-      const wrapper = mount(<StatBox name="Keith" count="10"/>)
+      const wrapper = mount(<StatBox />)
       expect(wrapper.containsMatchingElement(<StatCounter />)).to.be.true
-
     })
   })
 
