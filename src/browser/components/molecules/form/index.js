@@ -9,14 +9,12 @@ export default class Form extends Component{
   constructor(props){
     super(props)
     this.state = {
-      iterators: {
-        iteratorRadio: 0,
-        iteratorCheckbox: 0,
-        iteratorInput: 0,
-        iteratorSelect: 0
-      },
       input: {}
     }
+  }
+
+  parseName(inputModule, option){
+    return inputModule.prompt+'-'+option.split(' ').join('-')
   }
 
   handleChange(args, event) {
@@ -41,7 +39,6 @@ export default class Form extends Component{
     )
 
     let currentState = this.state
-    currentState.iterators.iteratorInput++
     currentState.input[inputModule.prompt] = ''
     this.setState( currentState )
     return domElement
@@ -54,9 +51,8 @@ export default class Form extends Component{
       onChange={this.handleChange.bind(this)}/>)
 
     let currentState = this.state
-    currentState.iterators.iteratorCheckbox++
     inputModule.options.forEach( option => {
-      currentState.input[inputModule.prompt+'-'+option.split(' ').join('-')] = false
+      currentState.input[this.parseName(inputModule, option)] = false
     })
     this.setState( currentState )
     return domElement
@@ -69,7 +65,6 @@ export default class Form extends Component{
       onChange={this.handleChange.bind(this)}
       />)
     let currentState = this.state
-    currentState.iterators.iteratorRadio++
 
     currentState.input[inputModule.prompt] = inputModule.options[0]
     this.setState( currentState )
@@ -86,7 +81,6 @@ export default class Form extends Component{
       passId={inputModule.id}
       />)
     let currentState = this.state
-    currentState.iterators.iteratorSelect++
     currentState.input[inputModule.prompt] = inputModule.options[0]
     this.setState( currentState )
     return domElement
