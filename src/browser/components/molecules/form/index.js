@@ -5,9 +5,6 @@ import FormRadio from '../../atoms/form-radio/index'
 import FormSelect from '../../atoms/form-select/index'
 import FormInput from '../../atoms/form-input/index'
 
-// TODO: Initial state needs to have false's and initial values etc.
-// Package them into an object in the state, instead of loosely at the top of the state
-
 export default class Form extends Component{
   constructor(props){
     super(props)
@@ -17,29 +14,23 @@ export default class Form extends Component{
         iteratorCheckbox: 0,
         iteratorInput: 0,
         iteratorSelect: 0
-      }
+      },
+      input: {}
     }
   }
 
   handleChange(args, event) {
-    console.log('EVENT AT TOP:', event.target)
     let property = args.property
     let isCheckbox = args.isCheckbox
-    new Promise( (resolve, reject) => {
-      console.log('Event:', event)
-      if(isCheckbox) {
-        this.setState({[property]: event.target.checked}, () => {
-          resolve()
-        });
-      } else {
-        this.setState({[property]: event.target.value}, () => {
-          resolve()
-        });
-      }
-    })
-    .then( () => {
-      console.log('STATE OF FORM:', this.state)
-    })
+    if(isCheckbox) {
+      let currentState = this.state
+      currentState.input[property] = event.target.checked
+      this.setState(currentState)
+    } else {
+      let currentState = this.state
+      currentState.input[property] = event.target.value
+      this.setState(currentState)
+    }
   }
 
   initTextInput(inputModule) {
@@ -48,8 +39,10 @@ export default class Form extends Component{
       placeholder={inputModule.placeholder} 
       onChange={this.handleChange.bind(this)}/>
     )
+
     let currentState = this.state
     currentState.iterators.iteratorInput++
+    currentState.input[inputModule.prompt] = ''
     this.setState( currentState )
     return domElement
   }
@@ -59,8 +52,12 @@ export default class Form extends Component{
       prompt={inputModule.prompt} 
       options={inputModule.options} 
       onChange={this.handleChange.bind(this)}/>)
+
     let currentState = this.state
     currentState.iterators.iteratorCheckbox++
+    inputModule.options.forEach( option => {
+      currentState.input[inputModule.prompt+'-'+option.split(' ').join('-')] = false
+    })
     this.setState( currentState )
     return domElement
   }
@@ -73,6 +70,8 @@ export default class Form extends Component{
       />)
     let currentState = this.state
     currentState.iterators.iteratorRadio++
+
+    currentState.input[inputModule.prompt] = inputModule.options[0]
     this.setState( currentState )
     return domElement
   }
@@ -88,6 +87,7 @@ export default class Form extends Component{
       />)
     let currentState = this.state
     currentState.iterators.iteratorSelect++
+    currentState.input[inputModule.prompt] = inputModule.options[0]
     this.setState( currentState )
     return domElement
   }
@@ -100,13 +100,10 @@ export default class Form extends Component{
         'Select': this.initSelect.bind(this, inputModule)
       }[inputModule.type]()
     })
-    this.setState({form: form}, () => {
-      console.log(this.state)
-    })
+    this.setState({form: form})
   }
 
   render(){
-
     return(
       <form className="uk-form-horizontal uk-margin-large">
         {this.state.form}
