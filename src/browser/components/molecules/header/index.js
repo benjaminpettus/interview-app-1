@@ -3,9 +3,6 @@ import flex from 'react-uikit-flex'
 import ProfileBox from '../../atoms/profile-box/index'
 import StatBox from '../../atoms/stat-box/index'
 import AddInput from '../prompt-input/index'
-import FormCheckbox from '../../atoms/form-checkbox'
-import FormRadio from '../../atoms/form-radio/index'
-import FormInput from '../../atoms/form-input/index'
 import Form from '../../molecules/form/index'
 
 
@@ -18,10 +15,12 @@ export default class Header extends Component {
 
 
   render() {
-
+      // Sample of select box. 
+      // Leaving here until a select box is actually used, for format copying.
+      // {"type": "Select", "id": "select1", "options": ["1","262","42","9"], "prompt": "What Is The Answer?", "isOptionRequired": false},
     const inputModules = [
       {"type": "Input", "placeholder": "What is the meaning of life, the universe, and everything?", "prompt": "What Is Your Question?"},
-      {"type": "Select", "id": "select1", "options": ["1","262","42","9"], "prompt": "What Is The Answer?", "isOptionRequired": false},
+      {"type": "Input", "placeholder": "42", "prompt": "What Is The Answer?"},
       {"type": "Checkbox", "options": ["Core-JavaScript", "Functional-Programming"], "prompt": "Topic"},
       {"type": "Radio", "options": ["Beginner", "Intermediate", "Advanced", "Jedi"], "prompt": "Difficulty Levels"}
     ]
