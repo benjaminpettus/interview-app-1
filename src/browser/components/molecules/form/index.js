@@ -5,6 +5,9 @@ import FormRadio from '../../atoms/form-radio/index'
 import FormSelect from '../../atoms/form-select/index'
 import FormInput from '../../atoms/form-input/index'
 
+// TODO: Initial state needs to have false's and initial values etc.
+// Package them into an object in the state, instead of loosely at the top of the state
+
 export default class Form extends Component{
   constructor(props){
     super(props)
@@ -19,6 +22,7 @@ export default class Form extends Component{
   }
 
   handleChange(args, event) {
+    console.log('EVENT AT TOP:', event.target)
     let property = args.property
     let isCheckbox = args.isCheckbox
     new Promise( (resolve, reject) => {
@@ -42,7 +46,7 @@ export default class Form extends Component{
     let domElement = (<FormInput 
       prompt={inputModule.prompt} 
       placeholder={inputModule.placeholder} 
-      onChange={this.handleChange.bind(this, {property: 'input'+this.state.iterators.iteratorInput, isCheckbox: false})}/>
+      onChange={this.handleChange.bind(this)}/>
     )
     let currentState = this.state
     currentState.iterators.iteratorInput++
@@ -54,7 +58,7 @@ export default class Form extends Component{
     let domElement = (<FormCheckbox 
       prompt={inputModule.prompt} 
       options={inputModule.options} 
-      onChange={this.handleChange.bind(this, {property: 'checkbox'+this.state.iterators.iteratorCheckbox, isCheckbox: true})}/>)
+      onChange={this.handleChange.bind(this)}/>)
     let currentState = this.state
     currentState.iterators.iteratorCheckbox++
     this.setState( currentState )
@@ -66,7 +70,7 @@ export default class Form extends Component{
       prompt={inputModule.prompt} 
       options={inputModule.options} 
       onChange={this.handleChange.bind(this)}
-      self={this}/>)
+      />)
     let currentState = this.state
     currentState.iterators.iteratorRadio++
     this.setState( currentState )
@@ -79,9 +83,9 @@ export default class Form extends Component{
       prompt={inputModule.prompt} 
       options={inputModule.options} 
       isOptionRequired={inputModule.isOptionRequired} 
-      onChange={this.handleChange.bind(this, {property: 'select'+this.state.iterators.iteratorSelect, isCheckbox: false}) } 
+      onChange={this.handleChange.bind(this) } 
       passId={inputModule.id}
-      self={this}/>)
+      />)
     let currentState = this.state
     currentState.iterators.iteratorSelect++
     this.setState( currentState )
