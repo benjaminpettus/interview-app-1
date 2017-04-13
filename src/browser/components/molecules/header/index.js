@@ -14,15 +14,29 @@ export default class Header extends Component {
   }
 
 
-  render() {
-      // Sample of select box. 
-      // Leaving here until a select box is actually used, for format copying.
-      // {"type": "Select", "id": "select1", "options": ["1","262","42","9"], "prompt": "What Is The Answer?", "isOptionRequired": false},
+  render() {   
+    
     const inputModules = [
-      {"type": "Input", "placeholder": "What is the meaning of life, the universe, and everything?", "prompt": "What Is Your Question?"},
-      {"type": "Input", "placeholder": "42", "prompt": "What Is The Answer?"},
-      {"type": "Checkbox", "options": ["Core-JavaScript", "Functional-Programming"], "prompt": "Topic"},
-      {"type": "Radio", "options": ["Beginner", "Intermediate", "Advanced", "Jedi"], "prompt": "Difficulty Levels"}
+      {
+        "type"       : "Input",
+        "placeholder": "What is the meaning of life, the universe, and everything?", 
+        "prompt"     : "What Is Your Question?"
+      },
+      {
+        "type"       : "Input", 
+        "placeholder": "42", 
+        "prompt"     : "What Is The Answer?"
+      },
+      {
+        "type"   : "Checkbox",
+        "options": ["Core-JavaScript","Functional-Programming"],
+        "prompt" : "Topic"
+      },
+      {
+        "type"   : "Radio",
+        "options": ["Beginner", "Intermediate", "Advanced", "Jedi"],
+        "prompt" : "Difficulty Levels"
+      }
     ]
 
     return (

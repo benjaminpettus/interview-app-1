@@ -40,7 +40,7 @@ app.use(express.static(__dirname + '/public/javascripts/'));
 app.use(express.static(__dirname + '/public/dist/'));
 app.use(express.static(__dirname + '/src/browser/main.js'));
 
-// authInitialize(app)
+authInitialize(app)
 
 /* GET home page. */
 app.get('*', function(req, res, next) {
