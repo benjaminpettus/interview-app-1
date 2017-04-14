@@ -9,7 +9,7 @@
   }
 
   function reset_db {
-    env=${1:-test}
+    env=${1:-test}q
     dbname=interviewdb-${env}
     dropdb ${dbname}
     createdb ${dbname}

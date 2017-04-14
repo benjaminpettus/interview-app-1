@@ -21,10 +21,10 @@ export default class Routes extends Component {
     }
 
     const LandingComponent = (props, state, params) =>
-    <Landing profile={fakeProfile} {...props}  stats={fakeStats} {...props}/>
+    <Landing profile={fakeProfile} {...props}  stats={fakeStats} />
 
     const GameOptionsComponent = (props, state, params) =>
-    <GameOptions profile={fakeProfile} {...props} stats={fakeStats} {...props} />
+    <GameOptions profile={fakeProfile} {...props} stats={fakeStats} />
 
     const ProfileComponent = (props, state, params) =>
     <Profile profile={fakeProfile} {...props} stats={fakeStats} {...props} />

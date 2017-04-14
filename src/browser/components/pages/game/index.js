@@ -41,14 +41,14 @@ export default class Game extends Component {
 
           <div className="uk-flex uk-grid">
             <div className="uk-flex-first">
-              <button className="uk-button uk-button-primary"
+              <button id="correct" className="uk-button uk-button-primary"
                       onClick={this.incrementQuestionState.bind(this, 'answered')}>Correct</button>
             </div>
             <div className="uk-flex">
-              <button className="uk-button uk-button-danger"
+              <button id="skipped" className="uk-button uk-button-danger"
                       onClick={this.incrementQuestionState.bind(this, 'skipped')}>Skip</button>
             </div>
-            <div className="uk-flex">
+            <div id="show" className="uk-flex">
               <button className="uk-button-secondary uk-button" onClick={this.toggleProperty.bind(this, 'showAnswer')}>Show Answer</button>
             </div>
           </div>
