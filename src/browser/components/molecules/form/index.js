@@ -42,6 +42,15 @@ export default class Form extends Component{
     this.state = {
       input: {}
     }
+
+    const form = this.props.inputModules.map( inputModule => {
+      return {'Input': this.initTextInput.bind(this, inputModule),
+        'Checkbox': this.initCheckbox.bind(this, inputModule),
+        'Radio': this.initRadio.bind(this, inputModule),
+        'Select': this.initSelect.bind(this, inputModule)
+      }[inputModule.type]()
+    })
+    this.state.form = form
   }
 
   parseName(inputModule, option){
@@ -63,9 +72,9 @@ export default class Form extends Component{
   }
 
   initTextInput(inputModule) {
-    let domElement = (<FormInput 
-      prompt={inputModule.prompt} 
-      placeholder={inputModule.placeholder} 
+    let domElement = (<FormInput
+      prompt={inputModule.prompt}
+      placeholder={inputModule.placeholder}
       onChange={this.handleChange.bind(this)}/>
     )
 
@@ -76,9 +85,9 @@ export default class Form extends Component{
   }
 
   initCheckbox(inputModule) {
-    let domElement = (<FormCheckbox 
-      prompt={inputModule.prompt} 
-      options={inputModule.options} 
+    let domElement = (<FormCheckbox
+      prompt={inputModule.prompt}
+      options={inputModule.options}
       onChange={this.handleChange.bind(this)}/>)
 
     let currentState = this.state
@@ -90,9 +99,9 @@ export default class Form extends Component{
   }
 
   initRadio(inputModule) {
-    let domElement = (<FormRadio 
-      prompt={inputModule.prompt} 
-      options={inputModule.options} 
+    let domElement = (<FormRadio
+      prompt={inputModule.prompt}
+      options={inputModule.options}
       onChange={this.handleChange.bind(this)}
       />)
     let currentState = this.state
@@ -104,28 +113,17 @@ export default class Form extends Component{
 
   initSelect(inputModule) {
     let domElement = (
-      <FormSelect 
-      prompt={inputModule.prompt} 
-      options={inputModule.options} 
-      isOptionRequired={inputModule.isOptionRequired} 
-      onChange={this.handleChange.bind(this) } 
+      <FormSelect
+      prompt={inputModule.prompt}
+      options={inputModule.options}
+      isOptionRequired={inputModule.isOptionRequired}
+      onChange={this.handleChange.bind(this) }
       passId={inputModule.id}
       />)
     let currentState = this.state
     currentState.input[inputModule.prompt] = inputModule.options[0]
     this.setState( currentState )
     return domElement
-  }
-
-  componentDidMount() {
-    const form = this.props.inputModules.map( inputModule => {
-      return {'Input': this.initTextInput.bind(this, inputModule),
-        'Checkbox': this.initCheckbox.bind(this, inputModule),
-        'Radio': this.initRadio.bind(this, inputModule),
-        'Select': this.initSelect.bind(this, inputModule)
-      }[inputModule.type]()
-    })
-    this.setState({form: form})
   }
 
   render(){
