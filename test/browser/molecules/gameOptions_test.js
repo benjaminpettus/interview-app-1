@@ -4,7 +4,7 @@ import { shallow, mount } from 'enzyme'
 import { jsdom } from 'jsdom'
 
 import GameOptions from '../../../src/browser/components/molecules/game-options/index.js'
-import SelectTag from '../../../src/browser/components/atoms/select-tag/index'
+import SelectTag from '../../../src/browser/components/atoms/form-select/index'
 
 global.document = jsdom('');
 global.window = document.defaultView;

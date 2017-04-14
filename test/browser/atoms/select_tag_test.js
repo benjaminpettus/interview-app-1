@@ -3,7 +3,7 @@ import { expect } from 'chai'
 import { shallow, mount } from 'enzyme'
 import { jsdom } from 'jsdom'
 
-import SelectTag from '../../../src/browser/components/atoms/select-tag/index'
+import SelectTag from '../../../src/browser/components/atoms/form-select/index'
 
 
 describe('<SelectTag />', () => {
