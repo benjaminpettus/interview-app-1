@@ -9,7 +9,7 @@ global.window = document.defaultView;
 import Game from '../../../src/browser/components/pages/game/index'
 import Scorecard from '../../../src/browser/components/molecules/scorecard/index'
 
-describegst('<Game />', () => {
+describe('<Game />', () => {
   context('testing game buttons that get rendered below', () => {
     context('buttons should render if game page is receiving data from db', () => {
       it('should render the "correct" button', () => {

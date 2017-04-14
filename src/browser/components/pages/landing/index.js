@@ -41,7 +41,7 @@ export default class Landing extends Component {
   }
 
   render() {
-    console.log('this::', this.props)
+    // const parsed = QueryString.parse(this.props.location.search)
     const parsed = QueryString.parse(this.props.location.search)
     const topicsAndDifficulty = findTopicsAndDifficulty()
     const filteredQuestions = filterQuestions(questions, this.state.topic, this.state.difficulty)
