@@ -21,7 +21,7 @@ const utilities = {
       .where(knex.raw(rawSql))
       .returning('*')
   },
-
+  
   findAll: () => {
     return knex
       .table(table)
