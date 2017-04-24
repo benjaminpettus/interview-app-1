@@ -1,4 +1,3 @@
-// in server.js
 import express from 'express'
 import authInitialize from './src/config/auth'
 import cookieParser from 'cookie-parser'
@@ -9,15 +8,17 @@ import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import webpackConfig from './webpack.config'
+import questions from './src/server/routes/questions'
+import users from './src/server/routes/users'
 
 const compiler = webpack(webpackConfig)
-const router = express.Router()
 const app = express()
-
+const router = express.Router()
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
+
 
 if(getEnv() === 'development') {
   app.use(webpackDevMiddleware(compiler, {
@@ -38,9 +39,14 @@ if(getEnv() === 'development') {
 
 app.use(express.static(__dirname + '/public/javascripts/'));
 app.use(express.static(__dirname + '/public/dist/'));
+app.use(express.static(__dirname + '/public/images/'));
 app.use(express.static(__dirname + '/src/browser/main.js'));
 
 authInitialize(app)
+
+app.use('/api/users', users)
+app.use('/api/questions', questions)
+
 
 /* GET home page. */
 app.get('*', function(req, res, next) {
@@ -51,4 +57,7 @@ app.get('*', function(req, res, next) {
 //  so that you can access your site with https default port.
 // Falback port will be 8080; basically for pre-production test in localhost
 // You will use $ npm run prod for this
+
 app.listen(process.env.PORT || 3000);
+
+export default app

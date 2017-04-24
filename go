@@ -18,7 +18,7 @@
 
   function test {
     reset_db test
-    NODE_ENV=test npm test
+    NODE_ENV=test PORT=3001 npm test
   }
 
   function init {
@@ -100,7 +100,7 @@
     mehserve install
     echo "!!!! IMPORTANT !!!!"
     echo "paste the 5 commands above for successfull mehserve configuration"
-  }
+  } 
 
   if [ -z "${1}" ] ; then
     init

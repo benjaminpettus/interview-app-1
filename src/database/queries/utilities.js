@@ -21,13 +21,13 @@ const utilities = {
       .where(knex.raw(rawSql))
       .returning('*')
   },
-  
-  findAll: () => {
+
+  findAll: (table) => {
     return knex
       .table(table)
       .returning('*')
   },
-
+  
   update: (table, column, data, attributes) => {
     return knex
       .table(table)

@@ -5,27 +5,27 @@ describe('Question Tests', () => {
   const newQuestion = [
     {
       question: "What is the number that represents the meaning of life",
-      tags: ["existentialism", "midlife-crisis"],
+      topics: ["existentialism", "midlife-crisis"],
       level: "10",
       answer: "42",
-      prompts: ["Hitchhiking", "Galaxy"],
-      score: 12
+      hints: ["Hitchhiking", "Galaxy"],
+      points: 12
     },
     {
       question: "How much wood could a woodchuck chuck if a woodchuck could chuck wood",
-      tags: ["woodchuckin", "pepperoni"],
+      topics: ["woodchuckin", "pepperoni"],
       level: "9",
       answer: "a lot",
-      prompts: ["Wisconsin", "Wood"],
-      score: 20
+      hints: ["Wisconsin", "Wood"],
+      points: 20
     },
     {
       question: "What is the most inefficient algorithm",
-      tags: ["Don't let Shereef see this", "MachineLearning"],
+      topics: ["Don't let Shereef see this", "MachineLearning"],
       level: "0",
       answer: "THE ALGORITHM",
-      prompts: ["BubbleSort", "LearnersGuild", "#LGPROBLEMS"],
-      score: 1
+      hints: ["BubbleSort", "LearnersGuild", "#LGPROBLEMS"],
+      points: 1
     }
   ]
 
@@ -38,20 +38,20 @@ describe('Question Tests', () => {
       return question.create( newQuestion[0] )
         .then( question => {
           expect(question[0].question).to.equal('What is the number that represents the meaning of life')
-          expect(question[0].tags).to.eql(["existentialism", "midlife-crisis"])
-          expect(question[0].score).to.eql(12)
+          expect(question[0].topics).to.eql(["existentialism", "midlife-crisis"])
+          expect(question[0].points).to.eql(12)
         })
     })
   })
 
-  describe('find by Tag', () => {
-    it('should find a question by the tag', () => {
+  describe('find by topic', () => {
+    it('should find a question by the topic', () => {
       return Promise.all([question.create( newQuestion[1] ), question.create( newQuestion[0])])
         .then( () => {
-          return question.findbyTag(["woodchuckin", "existentialism"])
+          return question.findbyTopic(["woodchuckin", "existentialism"])
           .then( question => {
             expect(question[0].level).to.equal('10')
-            expect(question[1].tags[1]).to.equal('pepperoni')
+            expect(question[1].topics[1]).to.equal('pepperoni')
             expect(question.length).to.equal(2)
           })
         })
@@ -65,7 +65,7 @@ describe('Question Tests', () => {
         .then( () => {
           return question.findbyLevel( "9" )
           .then( question => {
-            expect(question[0].tags[0]).to.equal("woodchuckin")
+            expect(question[0].topics[0]).to.equal("woodchuckin")
           })
         })
     })
@@ -77,24 +77,23 @@ describe('Question Tests', () => {
         .then( () => {
           return question.findbyID( 1 )
           .then( question => {
-            expect(question[0].tags[0]).to.equal("existentialism")
+            expect(question[0].topics[0]).to.equal("existentialism")
           })
         })
     })
   })
 
   describe('update by ID', () => {
-    it('should update a question by the id', () => {
-      return question.create( newQuestion[1] )
+    it('should update a question by the ID', () => {
+      return question.create( newQuestion[2] )
         .then( () => {
-          return question.updatebyID( 2, {question: 'why do you want to become a full stack developer', answer: "pancakes"} )
+          return question.updatebyID( '2', {level: '1000'} )
           .then( question => {
-            expect(question[0].answer).to.equal("pancakes")
+            expect(question[0].level).to.equal('1000')
           })
         })
     })
   })
-
 
   describe('update by Level', () => {
     it('should update a question by the level', () => {
@@ -121,11 +120,11 @@ describe('Question Tests', () => {
   })
 
 
-  describe('delete by Level', () => {
-    it('should delete by level', () => {
+  describe('delete by ID', () => {
+    it('should delete by ID', () => {
       return question.create( newQuestion[0] )
         .then( () => {
-          return question.deleteByLevel( "yes" )
+          return question.deleteByID( '1', "yes" )
           .then( question => {
             expect(question[0]).to.equal( undefined )
           })
